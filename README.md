@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ecommerce Frontend
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/nextjs-frontend-black)
+![React](https://img.shields.io/badge/react-19-blue)
+![Tailwind](https://img.shields.io/badge/tailwind-css-blue)
 
-First, run the development server:
+Frontend de e-commerce desenvolvido com Next.js, React e Tailwind CSS, consumindo uma API REST construída com NestJS.
 
-```bash
+A aplicação implementa uma experiência completa de loja virtual, incluindo autenticação, catálogo de produtos, carrinho e integração com backend.
+
+---
+
+## 🚀 Visão geral
+
+Este projeto representa a camada de apresentação de um sistema completo de e-commerce, sendo responsável por:
+
+- Interface moderna e responsiva
+- Consumo de API para produtos e autenticação
+- Gerenciamento de sessão do usuário
+- Navegação protegida
+- Experiência de compra simulada
+
+---
+
+## 🔗 Integração com Backend
+
+Este frontend consome a API disponível em:
+
+👉 https://github.com/eliseu-modan/ecommerce
+
+A comunicação é feita via Axios, utilizando uma instância centralizada com interceptors para autenticação.
+
+---
+
+## 🎯 Funcionalidades
+
+- Listagem dinâmica de produtos via API  
+- Visualização detalhada de produtos  
+- Login e cadastro de usuários  
+- Login social com Google OAuth  
+- Persistência de sessão  
+- Rotas protegidas  
+- Header responsivo com navegação e carrinho  
+- Estrutura de checkout (carrinho)  
+
+---
+
+## 🛠️ Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- Axios
+- Headless UI
+- Heroicons
+- React Icons
+
+---
+
+## 🧱 Arquitetura
+
+O projeto segue boas práticas de organização frontend:
+
+- **App Router (Next.js)** → estrutura de rotas moderna  
+- **Componentização** → UI reutilizável e desacoplada  
+- **Context API** → gerenciamento global de autenticação  
+- **Camada de API centralizada** → Axios com interceptors  
+- **Proteção de rotas** → controle de acesso baseado em autenticação  
+
+---
+
+## 📁 Estrutura do projeto
+
+```text
+app/
+├── auth/googleAuth/
+├── dashboard/
+├── layout.tsx
+├── page.tsx
+
+components/
+├── Auth/
+├── Cart/
+├── Layout/
+├── Products/
+├── routes/
+
+contexts/
+├── AuthProvider.tsx
+
+lib/
+├── api.ts
+
+⚙️ Requisitos
+Node.js 20+
+npm
+Backend rodando (API NestJS)
+npm install
+
+
+🔑 Variáveis de ambiente
+
+Crie um arquivo .env:
+
+NEXT_PUBLIC_API_URL=http://localhost:3000
+▶️ Executando o projeto
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplicação disponível em:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:9000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔐 Autenticação
 
-## Learn More
+A aplicação possui um sistema completo de autenticação:
 
-To learn more about Next.js, take a look at the following resources:
+Login com e-mail e senha
+Cadastro de usuários
+Login social com Google
+Persistência de sessão no cliente
+Proteção de rotas privadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📡 Consumo da API
+A comunicação com o backend é feita através de uma instância Axios centralizada:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Base URL configurada via .env
+Interceptors para envio automático de token
+Tratamento de erros global
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🚧 Melhorias futuras
+Implementar testes (Jest/React Testing Library)
+Melhorar UX do fluxo de checkout
+Adicionar loading states e feedback visual
+Deploy em ambiente cloud (Vercel)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+👨‍💻 Autor
+
+Eliseu Modanesi
