@@ -15,32 +15,37 @@ export default function CreateAccountModal({
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",
     password: "",
-    role: "user",
-    isActive: true,
+    role: "USER",
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((current) => ({ ...current, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+
     try {
-      await api.post("/users", form);
-      setMessage("✅ Conta criada com sucesso!");
+      await api.post("/users", {
+        ...form,
+        profilePic: `https://ui-avatars.com/api/?name=${encodeURIComponent(form.name)}&background=111827&color=ffffff`,
+        googleId: `local:${form.email.toLowerCase()}`,
+      });
+
+      setMessage("Conta criada com sucesso.");
       setTimeout(() => {
         onClose();
         setMessage("");
       }, 1500);
-    } catch (error: any) {
-      setMessage("❌ Erro ao criar conta, tente novamente.");
+    } catch (error) {
+      console.error(error);
+      setMessage("Erro ao criar conta, tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -49,84 +54,67 @@ export default function CreateAccountModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-6 relative animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+      <div className="relative w-full max-w-md rounded-3xl bg-white p-6 shadow-xl">
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
+          className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
         >
-          ✕
+          ×
         </button>
 
-        <h2 className="text-2xl font-semibold text-center mb-4 text-gray-800">
-          Criar Conta
+        <h2 className="text-center text-2xl font-semibold text-gray-800">
+          Criar conta
         </h2>
+        <p className="mt-2 text-center text-sm text-gray-500">
+          Cadastro conectado ao endpoint `/users`.
+        </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              E-mail
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
-              placeholder="seuemail@email.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Telefone
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              required
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
-              placeholder="(99) 99999-9999"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Nome
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Nome</label>
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
+              className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Seu nome completo"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Senha
-            </label>
+            <label className="block text-sm font-medium text-gray-700">E-mail</label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="voce@empresa.com"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Senha</label>
             <input
               type="password"
               name="password"
               value={form.password}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
-              placeholder="********"
+              minLength={6}
+              className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Minimo de 6 caracteres"
             />
           </div>
 
           {message && (
             <p
-              className={`text-sm text-center ${
-                message.startsWith("✅") ? "text-green-600" : "text-red-600"
+              className={`text-center text-sm ${
+                message.startsWith("Conta") ? "text-emerald-600" : "text-rose-600"
               }`}
             >
               {message}
@@ -136,13 +124,11 @@ export default function CreateAccountModal({
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-2 mt-2 rounded-lg text-white font-semibold transition ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
+            className={`w-full rounded-xl py-3 font-semibold text-white transition ${
+              loading ? "cursor-not-allowed bg-slate-400" : "bg-indigo-600 hover:bg-indigo-700"
             }`}
           >
-            {loading ? "Criando conta..." : "Criar Conta"}
+            {loading ? "Criando conta..." : "Criar conta"}
           </button>
         </form>
       </div>

@@ -1,29 +1,18 @@
 export const navigation = {
-  categories: [
-    {
-      id: 'women',
-      name: 'Women',
-      featured: [
-        { name: 'New Arrivals', href: '#' },
-        { name: 'Basic Tees', href: '#' },
-      ],
-      sections: [
-        {
-          id: 'clothing',
-          name: 'Clothing',
-          items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Dresses', href: '#' },
-          ],
-        },
-      ],
-    },
+  loja: [
+    { name: "Inicio", href: "/" },
+    { name: "Novidades", href: "/#produtos" },
+    { name: "Colecoes", href: "/#categorias" },
+    { name: "Sacola", href: "/carrinho" },
   ],
-
-  // 🔹 Adicione isso ↓
-  pages: [
-    { name: 'About', href: '#' },
-    { name: 'Contact', href: '#' },
-    { name: 'Blog', href: '#' },
+  conta: [
+    { name: "Entrar", href: "/login" },
+    { name: "Meu perfil", href: "/perfil" },
+    { name: "Meus pedidos", href: "/compras" },
+  ],
+  suporte: [
+    { name: "Entrega", href: "/carrinho" },
+    { name: "Acompanhar pedido", href: "/compras" },
+    { name: "Fale conosco", href: "/perfil" },
   ],
 }

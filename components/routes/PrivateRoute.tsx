@@ -8,12 +8,23 @@ import { useRouter } from "next/navigation";
 export function PrivateRoute({ children }: { children: React.ReactNode }) {
   const auth = useContext(AuthContext);
   const token = auth?.token;
+  const isReady = auth?.isReady;
   const router = useRouter();
+
   useEffect(() => {
-    if (!token) {
+    if (isReady && !token) {
       router.push("/login");
     }
-  }, [token, router]);
+  }, [isReady, token, router]);
+
+  if (!isReady) {
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center text-sm text-slate-500">
+        Carregando sua sessão...
+      </div>
+    );
+  }
+
   if (!token) {
     return null;
   }

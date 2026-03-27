@@ -1,19 +1,13 @@
 "use client";
 
 import { createContext, useState, useEffect, ReactNode } from "react";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  profilePic?: string | null;
-}
+import type { AuthUser } from "@/lib/types";
 
 interface AuthContextType {
   token: string | null;
-  user: User | null;
-  login: (token: string, user: User) => void;
+  user: AuthUser | null;
+  isReady: boolean;
+  login: (token: string, user: AuthUser) => void;
   logout: () => void;
 }
 
@@ -21,7 +15,8 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
@@ -36,14 +31,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.removeItem("user");
       }
     }
+
+    setIsReady(true);
   }, []);
 
-  const login = (newToken: string, newUser: User) => {
+  const login = (newToken: string, newUser: AuthUser) => {
     localStorage.setItem("token", newToken);
     localStorage.setItem("user", JSON.stringify(newUser));
     setToken(newToken);
     setUser(newUser);
-    window.location.href = "http://localhost:9000/";
+    window.location.href = "/";
   };
 
   const logout = () => {
@@ -53,11 +50,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("user");
     sessionStorage.clear();
 
-    window.location.href = "http://localhost:9000/";
+    window.location.href = "/";
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{ token, user, isReady, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,29 +1,25 @@
-// app/layout.tsx
 import "./globals.css";
 import Header from "@/components/Layout/Header/Header";
 import Footer from "@/components/Layout/Footer/Footer";
-import ProductList from "@/components/Products/ProductList/productList";
-import { AuthProvider } from "@/contexts/AuthProvider"; // ✅ importa o contexto
+import { AuthProvider } from "@/contexts/AuthProvider";
 
 export const metadata = {
-  title: "Ecommerce",
-  description: "Store built with Next.js + Tailwind",
+  title: "Ecommerce Next",
+  description: "Frontend de e-commerce com Next.js, Tailwind e integração com API.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className="bg-white text-gray-900">
-        {/* ✅ Agora tudo fica dentro do AuthProvider */}
+      <body className="min-h-screen bg-slate-50 text-slate-900">
         <AuthProvider>
-          <div className="relative overflow-hidden">
+          <div className="min-h-screen">
             <Header />
-            <ProductList />
-            {/* <HeroSection /> */}
+            <main>{children}</main>
+            <Footer />
           </div>
-
-          <main>{children}</main>
-          <Footer />
         </AuthProvider>
       </body>
     </html>

@@ -1,107 +1,90 @@
-// components/HeroSection.tsx
-"use client"
+"use client";
 
-import { useState } from "react"
-import ProductList from "../Products/ProductList/productList"
+import Link from "next/link";
 
 export default function HeroSection() {
-  const [showProducts, setShowProducts] = useState(false)
-
-  // Se showProducts = true → renderiza ProductList
-  if (showProducts) {
-    return <ProductList />
-  }
-
-  // Caso contrário, mostra o HeroSection
   return (
-    <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40 transition-all duration-500">
-      <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
-        <div className="sm:max-w-lg">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Summer styles are finally here
-          </h1>
-          <p className="mt-4 text-xl text-gray-500">
-            This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care if you live or die.
+    <section className="overflow-hidden bg-slate-950">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-indigo-300">
+            Nova temporada
           </p>
+          <h1 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Pecas escolhidas para transformar sua rotina com estilo.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+            Explore novidades, monte sua sacola e encontre itens que combinam
+            com trabalho, lazer e ocasioes especiais.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/#produtos"
+              className="rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-400"
+            >
+              Comprar agora
+            </Link>
+            <Link
+              href="/#categorias"
+              className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-white/40 hover:bg-white/5"
+            >
+              Ver colecoes
+            </Link>
+          </div>
         </div>
 
-        <div className="mt-10">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
-          >
-            <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-              <div className="flex items-center space-x-6 lg:space-x-8">
-                <div className="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                  <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                    <img
-                      src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="h-64 w-44 overflow-hidden rounded-lg">
-                    <img
-                      src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-300">
+              Curadoria
+            </p>
+            <h2 className="mt-4 text-2xl font-semibold text-white">
+              Looks pensados para cada ocasiao
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-300">
+              Das escolhas basicas do dia a dia as combinacoes mais marcantes,
+              nossa selecao foi montada para facilitar sua compra.
+            </p>
+          </div>
 
-                <div className="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                  <div className="h-64 w-44 overflow-hidden rounded-lg">
-                    <img
-                      src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="h-64 w-44 overflow-hidden rounded-lg">
-                    <img
-                      src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="h-64 w-44 overflow-hidden rounded-lg">
-                    <img
-                      src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
+          <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-indigo-500/25 to-cyan-400/10 p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">
+              Lancamentos
+            </p>
+            <h2 className="mt-4 text-2xl font-semibold text-white">
+              Modelos que renovam sua vitrine
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-slate-200">
+              Uma apresentacao mais proxima de uma loja online real, com foco
+              em descoberta, confianca e desejo de compra.
+            </p>
+          </div>
 
-                <div className="grid shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                  <div className="h-64 w-44 overflow-hidden rounded-lg">
-                    <img
-                      src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="h-64 w-44 overflow-hidden rounded-lg">
-                    <img
-                      src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
-                      alt=""
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
+          <div className="sm:col-span-2 rounded-[2rem] border border-white/10 bg-white p-6 text-slate-900 shadow-2xl shadow-slate-950/30">
+            <div className="grid gap-6 sm:grid-cols-3">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+                  Frete
+                </p>
+                <p className="mt-2 text-3xl font-semibold">Entrega em todo o Brasil</p>
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+                  Pagamento
+                </p>
+                <p className="mt-2 text-3xl font-semibold">Compra rapida e segura</p>
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+                  Destaques
+                </p>
+                <p className="mt-2 text-3xl font-semibold">Selecao nova toda semana</p>
               </div>
             </div>
           </div>
-
-          {/* Botão que mostra a lista de produtos */}
-          <button
-            onClick={() => setShowProducts(true)}
-            className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700 transition-colors"
-          >
-            Shop Collection
-          </button>
         </div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }
