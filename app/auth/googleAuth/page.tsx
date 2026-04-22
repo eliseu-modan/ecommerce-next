@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useContext, useRef } from "react";
+import { Suspense, useContext, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AuthContext } from "@/contexts/AuthProvider";
 
-export default function GoogleAuthPage() {
+function GoogleAuthContent() {
   const router = useRouter();
   const params = useSearchParams();
   const auth = useContext(AuthContext);
@@ -19,10 +19,17 @@ export default function GoogleAuthPage() {
 
       const user = JSON.parse(decodeURIComponent(userJson));
       auth.login(token, user);
-
       router.push("/");
     }
   }, [params, auth, router]);
 
   return <div>Autenticando com Google...</div>;
+}
+
+export default function GoogleAuthPage() {
+  return (
+    <Suspense fallback={<div>Preparando autenticacao...</div>}>
+      <GoogleAuthContent />
+    </Suspense>
+  );
 }
