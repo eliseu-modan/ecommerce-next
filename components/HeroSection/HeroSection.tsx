@@ -11,7 +11,7 @@ export default function HeroSection() {
             Nova temporada
           </p>
           <h1 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Pecas escolhidas para transformar sua rotina com estilo.
+            Peças escolhidas para transformar sua rotina com estilo.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             Explore novidades, monte sua sacola e encontre itens que combinam

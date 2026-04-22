@@ -34,7 +34,7 @@ export default function CategoriesSection() {
             Compre por estilo
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-900">
-            Descubra colecoes pensadas para diferentes momentos do seu dia.
+            Descubra coleções pensadas para diferentes momentos do seu dia.
           </h2>
         </div>
         {auth?.user?.role === "ADMIN" && (
@@ -42,7 +42,7 @@ export default function CategoriesSection() {
             href="/admin/categorias"
             className="text-sm font-medium text-indigo-600 transition hover:text-indigo-700"
           >
-            Gerenciar colecoes
+            Gerenciar coleções
           </Link>
         )}
       </div>

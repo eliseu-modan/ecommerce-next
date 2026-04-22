@@ -13,7 +13,7 @@ export default function FeaturedSection() {
     {
       title: "Vitrine organizada",
       description:
-        "Colecoes, destaques e produtos agora aparecem com linguagem de loja, nao de sistema.",
+        "coleções, destaques e produtos agora aparecem com linguagem de loja, nao de sistema.",
     },
   ];
 
@@ -29,7 +29,7 @@ export default function FeaturedSection() {
           </h2>
           <p className="mt-4 text-base leading-7 text-slate-600">
             A apresentacao agora prioriza descoberta de produtos, confianca na
-            compra e uma navegacao mais natural entre colecoes, itens e sacola.
+            compra e uma navegacao mais natural entre coleções, itens e sacola.
           </p>
         </div>
 

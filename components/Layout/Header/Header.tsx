@@ -16,7 +16,7 @@ import { getInitials } from "@/lib/format";
 const mainLinks = [
   { name: "Inicio", href: "/" },
   { name: "Novidades", href: "/#produtos" },
-  { name: "Colecoes", href: "/#categorias" },
+  { name: "Coleçoes", href: "/#categorias" },
   { name: "Sacola", href: "/carrinho" },
 ];
 
@@ -29,7 +29,7 @@ const userLinks = [
 const adminLinks = [
   { name: "Gerenciar vitrine", href: "/admin/produtos" },
   { name: "Cadastrar produto", href: "/admin/produtos/novo" },
-  { name: "Organizar colecoes", href: "/admin/categorias" },
+  { name: "Organizar coleções", href: "/admin/categorias" },
 ];
 
 export default function Header() {
