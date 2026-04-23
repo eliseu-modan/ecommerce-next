@@ -60,6 +60,9 @@ export default function LoginPage() {
         </Link>
       </div>
 
+
+      
+
       <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
         <h2 className="text-2xl font-semibold text-slate-900">Entrar</h2>
         <p className="mt-2 text-sm text-slate-500">
